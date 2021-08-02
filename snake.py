@@ -62,6 +62,10 @@ def followCondition(snake, field, depth, fieldBackup, colPositionX, colPositionY
                 fieldBackup[value1-1].remove(y)
                 snake.append([value1-1,y]) 
                 break
+            else:
+                maps[value1-1][y] = 'H'
+                fieldBackup[value1-1].remove(y)
+                snake.append([value1-1,y]) 
         #Caso B: Si la profundidad excede del tamano indicado
         if(depth >= lenX*lenY):
             if(maps[x][y].find('*') == 0):
@@ -75,8 +79,7 @@ def followCondition(snake, field, depth, fieldBackup, colPositionX, colPositionY
                  maps[x][y] = 'H'
                  fieldBackup[x].remove(y)
                  snake.append([x,y])
-                 
-        
+                       
         #Caso A1: Si la posicion x e y son iguales y 
         #    si esta en la ultima posicion los dos intervalos  (x, y)
         if((lenX-1 == colPositionX) and (lenY-1 == colPositionY)):            
@@ -118,22 +121,22 @@ def endGame(field):
     return value                           
 
 def followPosition(snake, depth, field, fieldBackup):
-    option = 0
-    while(option == 0):        
+    option = True
+    while(option):        
         print('Posiciones Disponibles:' + str(fieldBackup))
         print('Snake:'+str(snake)+'\n')
+        numberOfAvailableDifferentPaths(snake, depth, fieldBackup)
         screen(field)
         try:
             if(endGame(field) == 0):
-                print('Fin del juego'+'\nPuntuacion:'+point_game(depth, fieldBackup))
+                print('Fin del juego')
+                point_game(depth, fieldBackup)
                 break
-            else:               
-                print('Posiciones disponibles:'+fieldBackup)
+            else:                
                 print('Introduzca valor a la siguiente posicion x:')
                 r = int(input())
                 print('Introudzca valor a la siguiente posicion y:')
                 c = int(input())
-    
                 followCondition(snake,field, depth, fieldBackup, r, c)
                 screen(field)
                 print()
@@ -141,27 +144,33 @@ def followPosition(snake, depth, field, fieldBackup):
         except Exception:
             print(Exception().__str__())
 
+
 def point_game(depth, fieldBackup):
     path_free = len(fieldBackup)
     if((1 <= depth) and (depth <= 20)):
-        x = depth + 1
-        y = 20 - x
         punt = path_free - depth
         if(punt < 1):
             punt = 1
-        return punt
+    print('Puntuacion:'+ str(punt))
 
 def screen(field):
     for contx in range(len(field)):
         for conty in range(len(field[contx])):
             print(field[contx][conty], end=' ')
         print()      
-    print()      
+    print()
 
+def numberOfAvailableDifferentPaths(snake, depth, fieldBackup):
+    path_free = len(fieldBackup)
+    if(len(snake) % depth == 0):
+        print('Disponibilidad de espacios:'+str(path_free))
+    else:
+        print('Disponibilidad de espacios:'+str(path_free))
+       
 def main():
-    print('Tamano de la matriz en x:')
+    print('Tamano del campo en x:')    
     x = int(input())
-    print('Tamano de la matriz en y:')
+    print('Tamano del campo en y:')
     y = int(input())
     board(x,y)
 
