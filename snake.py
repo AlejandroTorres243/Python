@@ -125,10 +125,10 @@ def followPosition(snake, depth, field, fieldBackup):
         screen(field)
         try:
             if(endGame(field) == 0):
-                print('Fin del juego')
-                #print('Puntuacion:'+point_game(depth, fieldBackup))
+                print('Fin del juego'+'\nPuntuacion:'+point_game(depth, fieldBackup))
                 break
-            else:                
+            else:               
+                print('Posiciones disponibles:'+fieldBackup)
                 print('Introduzca valor a la siguiente posicion x:')
                 r = int(input())
                 print('Introudzca valor a la siguiente posicion y:')
@@ -156,8 +156,7 @@ def screen(field):
         for conty in range(len(field[contx])):
             print(field[contx][conty], end=' ')
         print()      
-    print()
-       
+    print()      
 
 def main():
     print('Tamano de la matriz en x:')
