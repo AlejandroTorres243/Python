@@ -166,5 +166,4 @@ def main():
     y = int(input())
     board(x,y)
 
-#numberOfAvailableDifferentPaths(board, snake, depth)
-#r = int(input())
+main()
