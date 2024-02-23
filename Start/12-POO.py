@@ -1,3 +1,4 @@
+#Programación Orientada a Objetos POO
 class Camiseta:
 
     # Definicion de sobrecarga del metodo init en la segunda parte
