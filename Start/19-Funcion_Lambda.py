@@ -38,10 +38,12 @@ print(maximo(10,99,-25))
 def ponerPrefijo(prefijo):
     return lambda nombre : f"{prefijo} {nombre}"
 
+# variable = funcion(arg1)
 addMr = ponerPrefijo("Mr")
 addSr = ponerPrefijo("Sr")
 addMis = ponerPrefijo("Miss")
 
+# variable(arg2)
 print(addMr("Juan"))
 print(addSr("Julian"))
 print(addMis("Nerea"))
